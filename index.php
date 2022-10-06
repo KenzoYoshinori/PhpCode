@@ -6,7 +6,8 @@
  * @param array $arrayData passed to method for sort
  * @return array
  */
-function increasingInsertSort($arrayData) { //def function for insertion sort loop
+//def function for insertion sort loop
+function increasingInsertSort($arrayData) {
     //"for" cycle for checking all keys of an array
     for($i = 0; $i < count($arrayData); $i++) {
         //initializing a variable that will be compared to others
@@ -18,8 +19,10 @@ function increasingInsertSort($arrayData) { //def function for insertion sort lo
             $arrayData[$j + 1] = $arrayData[$j];
             $j--;
         }
-        $arrayData[$j + 1] = $value; //А отут походу назначається остаточно, коли луп розбивається.
+        //Assigning $value to $arrayData when the loop is broken
+        $arrayData[$j + 1] = $value;
     }
+    //returning $arrayData
     return $arrayData;
 }
 
@@ -87,7 +90,7 @@ function searchKeyWordInArray($word, array $searchedArray) {
     //returning this array
     return $array1;
 }
-
+//Testing the searchKeyWordInArray()
 $sentenceArray = ["i like programming", "then errors in my code make me hate everything", "and later my code is running", "so in the end that will do"];
 $searchedWord = "code";
 $arrayTest = searchKeyWordInArray($searchedWord, $sentenceArray);
@@ -109,7 +112,7 @@ function factorialCalculating($n) {
     }
     return $factorial;
 }
-
+//Testing factorialCalculating()
 $value = 5;
 $factorialOfValue = factorialCalculating($value);
 echo nl2br("\n $value factorial will be: ");
