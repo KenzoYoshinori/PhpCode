@@ -7,12 +7,16 @@
  * @return array
  */
 function increasingInsertSort($arrayData) { //def function for insertion sort loop
-    for($i = 0; $i < count($arrayData); $i++) { //"for" який пройде весь масив
-        $value = $arrayData[$i]; //змінна, яка буде переставлятись
-        $j = $i - 1; //Допоміжна змінна, назвемо це поки так
-        while($j >= 0 && $arrayData[$j] > $value) { //допоки джей = 0 і інша змінна більша за цифру в куску масива - >  дивись нижче
-            $arrayData[$j + 1] = $arrayData[$j]; //отут value буде поступово пригати вниз  (ЯК ТІЛЬКИ ВАЛ'Ю СТАЄ МЕНШОЮ ЗА ЗРІВНЮВАНЕ ЧИСЛО - ЦИКЛ РОЗБИВАЄТЬСЯ)
-            $j--;                                 // а отут джей буде пригати вниз, щоб value теж пргав вниз
+    //"for" cycle for checking all keys of an array
+    for($i = 0; $i < count($arrayData); $i++) {
+        //initializing a variable that will be compared to others
+        $value = $arrayData[$i];
+        //initializing a second variable $value will be compared with
+        $j = $i - 1;
+        //"while" cycle to compare keys with each other till $value finds it's place
+        while($j >= 0 && $arrayData[$j] > $value) {
+            $arrayData[$j + 1] = $arrayData[$j];
+            $j--;
         }
         $arrayData[$j + 1] = $value; //А отут походу назначається остаточно, коли луп розбивається.
     }
