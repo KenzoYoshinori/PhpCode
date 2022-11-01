@@ -1,119 +1,58 @@
 <?php
 
 /**
- * This method sorts arrays in increasing order using Insert Sort Loop
- *
- * @param array $arrayData passed to method for sort
- * @return array
+ * Class which sets and gets person's data
  */
-//def function for insertion sort loop
-function increasingInsertSort($arrayData) {
-    //"for" cycle for checking all keys of an array
-    for($i = 0; $i < count($arrayData); $i++) {
-        //initializing a variable that will be compared to others
-        $value = $arrayData[$i];
-        //initializing a second variable $value will be compared with
-        $j = $i - 1;
-        //"while" cycle to compare keys with each other till $value finds it's place
-        while($j >= 0 && $arrayData[$j] > $value) {
-            $arrayData[$j + 1] = $arrayData[$j];
-            $j--;
-        }
-        //Assigning $value to $arrayData when the loop is broken
-        $arrayData[$j + 1] = $value;
+class person {
+  private $id = null;
+  private $name = null;
+  private $secondName = null;
+  private $birthDate = null;
+  private $sex = null;
+  private $address = null;
+  public function setData() {
+    if($_POST["id"] || $_POST["name"] || $_POST["secondName"]|| $_POST["birthDate"] || $_POST["sex"] || $_POST["address"] ) {
+//    if (preg_match("/[^A-Za-z'-]/", $_POST['name'])) {
+//      die ("invalid name and name should be alpha");
+//    }
+      $this -> $id = $_POST['id'];
+      $this -> $name = $_POST['name'];
+      $this -> $secondName = $_POST['secondName'];
+      $this -> $birthDate = $_POST['birthDate'];
+      $this -> $sex = $_POST['sex'];
+      $this -> $address = $_POST['address'];
     }
-    //returning $arrayData
-    return $arrayData;
+    return $this -> id;
+    return $this -> name;
+    return $this -> secondName;
+    return $this -> birthDate;
+    return $this -> sex;
+    return $this -> address;
+  }
+  public function getData() {
+    echo $this -> id;
+    echo $this -> $name = $_POST['name'];
+    echo $this -> $secondName = $_POST['secondName'];
+    echo $this -> $birthDate = $_POST['birthDate'];
+    echo $this -> $sex = $_POST['sex'];
+    echo $this -> $address = $_POST['address'];
+  }
 }
+$obj = new person();
 
-/**
- * This method is basically the previous, but ">" is changed to "<" in while cycle, so now it sorts in decreasing order
- *
- * @param array $arrayData passed to method for sort
- * @return array
- */
-//defining function for insertion sort loop
-function decreasingInsertSort($arrayData) {
-    //"for" cycle for checking all keys of an array
-    for($i = 0; $i < count($arrayData); $i++) {
-        //initializing a variable that will be compared to others
-        $value = $arrayData[$i]; //змінна, яка буде переставлятись
-        //initializing a second variable $value will be compared with
-        $j = $i - 1;
-        //"while" cycle to compare keys with each other till $value finds it's place
-        while($j >= 0 && $arrayData[$j] < $value) {
-            $arrayData[$j + 1] = $arrayData[$j];
-            $j--;
-        }
-        //Assigning $value to $arrayData when the loop is broken
-        $arrayData[$j + 1] = $value;
-    }
-    //returning $arrayData
-    return $arrayData;
-}
-//initializing random for 100-value array
-$randomNumberArray = range(-100,100);
-shuffle($randomNumberArray);
-//assigning 100 random numbers from $randomNumberArray to a $testArray
-$testArray = array_slice($randomNumberArray, 0, 100);
+?>
+<html>
+<body>
 
-echo "Original Array :\n";
-//echoing an original array
-echo implode(', ', $testArray);
-//assigning sorted arrays to variables and printing it
-$sortedArrayIncreasingOrder = increasingInsertSort($testArray);
-echo nl2br ("\nSorted Array in increasing order: ");
-echo implode(', ', $sortedArrayIncreasingOrder);
-$sortedArrayDecreasingOrder = decreasingInsertSort($testArray);
-echo nl2br ("\nSorted Array in decreasing order: ");
-echo implode(', ', $sortedArrayDecreasingOrder);
+<form action = "<?php $obj -> setData() ?>" method = "POST">
+    ID: <input type = "text" name = "id" />
+    Name: <input type = "text" name = "name" />
+    Second Name: <input type = "text" name = "secondName" />
+    BirthDate: <input type = "text" name = "birthDate" />
+    Sex: <input type = "text" name = "sex" />
+    Address: <input type = "text" name = "address" />
+    <input type = "submit" />
+</form>
 
-//Finding a key to a value
-$key = array_search('7', $testArray);
-echo nl2br ("\nKey is : $key");
-
-
-/**
- * Method for searching the key of a searched word in array of sentences
- * @param array $searchedArray is array of sentences
- * @param string $word is searched word
- */
-function searchKeyWordInArray($word, array $searchedArray) {
-    //"for" loop for checking whole array
-    for ($i= 0; $i < count($searchedArray); $i++) {
-        //checking if searched word is in the current key
-        if(strpos($searchedArray[$i], $word) !== false) {
-            //if true - assigning current key to an array
-            $array1[$i] = $i;
-        }
-    }
-    //returning this array
-    return $array1;
-}
-//Testing the searchKeyWordInArray()
-$sentenceArray = ["i like programming", "then errors in my code make me hate everything", "and later my code is running", "so in the end that will do"];
-$searchedWord = "code";
-$arrayTest = searchKeyWordInArray($searchedWord, $sentenceArray);
-echo nl2br("\n Searched word keys in array are: ");
-echo implode(', ', $arrayTest);
-
-
-/**
- * Method is used to calculate factorial of a number
- * @param integer $n passed to a function
- * @return integer
- *
- */
-function factorialCalculating($n) {
-    $num = $n;
-    $factorial = 1;
-    for($i = $num; $i > 0; $i--) {
-        $factorial = $factorial * $i;
-    }
-    return $factorial;
-}
-//Testing factorialCalculating()
-$value = 5;
-$factorialOfValue = factorialCalculating($value);
-echo nl2br("\n $value factorial will be: ");
-print_r($factorialOfValue);
+</body>
+</html>
